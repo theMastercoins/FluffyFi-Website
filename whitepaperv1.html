@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FluffyFi - Whitepaper v1.1</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Whitepaper specific styles */
+        .whitepaper-section {
+            padding: 6rem 0;
+            background: var(--fluffy-cream);
+            min-height: 100vh;
+        }
+        
+        .whitepaper-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .whitepaper-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            opacity: 0.05;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .whitepaper-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .whitepaper-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .whitepaper-title {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-weight: 900;
+            color: var(--fluffy-brown);
+            margin-bottom: 0.5rem;
+            text-align: center;
+            animation: titleFadeIn 1s ease-out;
+        }
+        
+        .whitepaper-subtitle {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--fluffy-orange);
+            margin-bottom: 3rem;
+            text-align: center;
+            animation: subtitleFadeIn 1s ease-out 0.3s both;
+        }
+        
+        .whitepaper-section-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--fluffy-brown);
+            margin: 3rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--fluffy-orange);
+            animation: sectionTitleSlideIn 0.8s ease-out both;
+        }
+        
+        .whitepaper-section-content {
+            margin-bottom: 2rem;
+            animation: contentFadeIn 0.8s ease-out both;
+        }
+        
+        .whitepaper-list {
+            list-style: none;
+            padding-left: 1.5rem;
+        }
+        
+        .whitepaper-list li {
+            margin-bottom: 0.75rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .whitepaper-list li:before {
+            position: absolute;
+            left: 0;
+            color: var(--fluffy-orange);
+        }
+        
+        /* Status indicators for roadmap items */
+        .whitepaper-list li.completed:before {
+            content: '✅';
+            color: #4CAF50;
+        }
+        
+        .whitepaper-list li.in-progress:before {
+            content: '⏳';
+            color: #FFC107;
+        }
+        
+        .whitepaper-list li.upcoming:before {
+            content: '🔜';
+            color: #2196F3;
+        }
+        
+        /* Default bullet for items without status */
+        .whitepaper-list li:not(.completed):not(.in-progress):not(.upcoming):before {
+            content: '•';
+            color: var(--fluffy-orange);
+        }
+        
+        .whitepaper-emoji {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+            display: inline-block;
+            animation: emojiFloat 3s ease-in-out infinite;
+        }
+        
+        .whitepaper-highlight {
+            background: linear-gradient(to right, rgba(255, 159, 67, 0.2), rgba(255, 159, 67, 0));
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-weight: 600;
+            color: var(--fluffy-brown);
+        }
+        
+        .whitepaper-warning {
+            background: rgba(255, 159, 67, 0.1);
+            border-left: 4px solid var(--fluffy-orange);
+            padding: 1rem;
+            margin: 2rem 0;
+            border-radius: 0.5rem;
+            animation: warningPulse 4s ease-in-out infinite;
+        }
+        
+        .typing-animation {
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        
+        .typing-animation .char {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: charAppear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            animation-delay: calc(var(--char-index) * 0.05s + var(--delay, 0s));
+        }
+        
+        @keyframes charAppear {
+            0% { opacity: 0; transform: translateY(8px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+            animation-delay: var(--delay, 0s);
+        }
+        
+        .slide-in-left {
+            transform: translateX(-50px);
+            opacity: 0;
+            animation: slideInLeft 1s ease-out forwards;
+            animation-delay: var(--delay, 0s);
+        }
+        
+        .slide-in-right {
+            transform: translateX(50px);
+            opacity: 0;
+            animation: slideInRight 1s ease-out forwards;
+            animation-delay: var(--delay, 0s);
+        }
+        
+        .scale-in {
+            transform: scale(0.5);
+            opacity: 0;
+            animation: scaleIn 1s ease-out forwards;
+            animation-delay: var(--delay, 0s);
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideInLeft {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes scaleIn {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes titleFadeIn {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes subtitleFadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes sectionTitleSlideIn {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes contentFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes emojiFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes warningPulse {
+            0%, 100% { box-shadow: 0 0 0 rgba(255, 159, 67, 0); }
+            50% { box-shadow: 0 0 20px rgba(255, 159, 67, 0.3); }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .whitepaper-container {
+                padding: 1.5rem;
+            }
+            
+            .whitepaper-title {
+                font-size: 2rem;
+            }
+            
+            .whitepaper-subtitle {
+                font-size: 1.5rem;
+            }
+            
+            .whitepaper-section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar (reused from index.html) -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand" onclick="window.location.href='index.html'">
+                <img src="attached_assets/fluffyFi_logo_1753111120819.png" alt="FluffyFi" class="nav-logo">
+                <span class="nav-title">FluffyFi</span>
+            </div>
+            
+            <div class="nav-links desktop-nav">
+                <button onclick="window.location.href='index.html'" class="nav-link">Home</button>
+                <button onclick="window.location.href='index.html#stats'" class="nav-link">Stats</button>
+                <button onclick="window.location.href='index.html#nfts'" class="nav-link">NFTs</button>
+                <button onclick="window.location.href='index.html#community'" class="nav-link">Community</button>
+                <button onclick="window.location.href='index.html#joinus'" class="nav-cta">Join Us</button>
+            </div>
+            
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <div id="mobile-menu" class="mobile-menu">
+            <button onclick="window.location.href='index.html'" class="mobile-nav-link">Home</button>
+            <button onclick="window.location.href='index.html#stats'" class="mobile-nav-link">Stats</button>
+            <button onclick="window.location.href='index.html#nfts'" class="mobile-nav-link">NFTs</button>
+            <button onclick="window.location.href='index.html#community'" class="mobile-nav-link">Community</button>
+            <button onclick="window.location.href='index.html#joinus'" class="mobile-cta">Join Us</button>
+        </div>
+    </nav>
+
+    <!-- Whitepaper Section -->
+    <section class="whitepaper-section">
+        <div class="whitepaper-container">
+            <div class="whitepaper-bg">
+                <img src="attached_assets/fluffyFi_logo_1753111120819.png" alt="FluffyFi Background">
+            </div>
+            
+            <div class="whitepaper-content">
+                <h1 class="whitepaper-title">
+                    <span class="whitepaper-emoji">🧾</span>
+                    <span class="typing-animation" style="--delay: 0.3s" data-text="FluffyFi WhitePaper V1"></span>
+                </h1>
+                
+                <h2 class="whitepaper-subtitle">
+                    <span class="whitepaper-emoji">🐾</span>
+                    <span class="typing-animation" style="--delay: 1s" data-text="The Next Era of Memecoin Culture"></span>
+                </h2>
+                
+                <!-- Section 1: Introduction -->
+                <div class="whitepaper-section-title slide-in-left" style="--delay: 1.5s">
+                    <span class="typing-animation" data-text="1. Introduction"></span>
+                </div>
+                
+                <div class="whitepaper-section-content fade-in" style="--delay: 1.8s">
+                    <p>FluffyFi is more than a memecoin — it's a <span class="whitepaper-highlight">movement</span>.</p>
+                    <p>Inspired by the viral success of Pengu, FluffyFi brings <span class="whitepaper-highlight">fun</span>, <span class="whitepaper-highlight">community</span>, and <span class="whitepaper-highlight">mass engagement</span> back to Web3.</p>
+                    <p>At the heart of FluffyFi is our orange-badge Fluffy King Cat, leading a rebellion of good vibes across the internet. Whether you missed Pengu or you're early this time — FluffyFi is your <span class="whitepaper-highlight">redemption arc</span>.</p>
+                </div>
+                
+                <!-- Section 2: Why FluffyFi? -->
+                <div class="whitepaper-section-title slide-in-right" style="--delay: 2.1s">
+                    <span class="typing-animation" data-text="2. Why FluffyFi?"></span>
+                </div>
+                
+                <div class="whitepaper-section-content fade-in" style="--delay: 2.4s">
+                    <ul class="whitepaper-list">
+                        <li class="slide-in-left completed" style="--delay: 2.6s">Community-Earned $FLUFFY Token</li>
+                        <li class="slide-in-left completed" style="--delay: 2.8s">Adorable Branding with <span class="whitepaper-highlight">emotional power</span></li>
+                        <li class="slide-in-left in-progress" style="--delay: 3.0s">Fluffy Character Universe expanding via memes, NFTs, animation</li>
+                        <li class="slide-in-left upcoming" style="--delay: 3.2s">Airdrops & Rewards for Active Supporters</li>
+                        <li class="slide-in-left in-progress" style="--delay: 3.4s">Organic Viral Growth via Twitter/X & Telegram</li>
+                        <li class="slide-in-left completed" style="--delay: 3.6s">No VC – No Presale – Fair Mint Launch</li>
+                    </ul>
+                </div>
+                
+                <!-- Section 3: Mission -->
+                <div class="whitepaper-section-title slide-in-left" style="--delay: 3.8s">
+                    <span class="typing-animation" data-text="3. Mission"></span>
+                </div>
+                
+                <div class="whitepaper-section-content fade-in" style="--delay: 4.0s">
+                    <p>To build the most loved, decentralized, <span class="whitepaper-highlight">meme-powered brand</span> on the blockchain.</p>
+                    <p>FluffyFi isn't here to copy trends. It's here to create culture, with <span class="whitepaper-highlight">community-first token distribution</span> and fair access to all.</p>
+                </div>
+                
+                <!-- Section 4: The $FLUFFY Token -->
+                <div class="whitepaper-section-title slide-in-right" style="--delay: 4.2s">
+                    <span class="typing-animation" data-text="4. The $FLUFFY Token"></span>
+                </div>
+                
+                <div class="whitepaper-section-content fade-in" style="--delay: 4.4s">
+                    <p>FluffyFi will introduce the $FLUFFY coin — a meme asset with actual <span class="whitepaper-highlight">community utility</span>.</p>
+                    
+                    <p><strong>💸 How to Earn $FLUFFY (Before Listing):</strong></p>
+                    <ul class="whitepaper-list">
+                        <li class="slide-in-left in-progress" style="--delay: 4.6s">Engage on Twitter/X</li>
+                        <li class="slide-in-left upcoming" style="--delay: 4.7s">Join and be active on Discord</li>
+                        <li class="slide-in-left upcoming" style="--delay: 4.8s">Participate in airdrop missions</li>
+                        <li class="slide-in-left upcoming" style="--delay: 4.9s">Hold FluffyFi NFTs (coming soon)</li>
+                        <li class="slide-in-left upcoming" style="--delay: 5.0s">Verify wallet for pre-mint allocation</li>
+                    </ul>
+                    
+                    <p><strong>📦 Pre-Launch Token Distribution</strong></p>
+                    <ul class="whitepaper-list">
+                        <li class="slide-in-right upcoming" style="--delay: 5.1s">Discord priority airdrops</li>
+                        <li class="slide-in-right upcoming" style="--delay: 5.2s">Active users verified via community wallet</li>
+                        <li class="slide-in-right upcoming" style="--delay: 5.3s">Reserved token pools for early supporters and engagement</li>
+                        <li class="slide-in-right completed" style="--delay: 5.4s">No presale, No token sale, No early investor dump</li>
+                    </ul>
+                </div>
+                
+                <!-- Section 5: Brand Identity -->
+                <div class="whitepaper-section-title slide-in-left" style="--delay: 5.5s">
+                    <span class="typing-animation" data-text="5. Brand Identity"></span>
+                </div>
+                
+                <div class="whitepaper-section-content fade-in" style="--delay: 5.6s">
+                    <p><strong>Fluffy the Cat 🐾:</strong> Mischievous, royal, and fluffy — the face of the revolution</p>
+                    <p><strong>The FluffyVerse:</strong> A meme multiverse with animations, short videos, collectibles, and merch</p>
+                    <p><strong>Brand Position:</strong> Emotional, fun, meme-core</p>
+                </div>
+                
+                <!-- Section 6: Roadmap -->
+                <div class="whitepaper-section-title slide-in-right" style="--delay: 5.7s">
+                    <span class="typing-animation" data-text="6. Roadmap"></span>
+                </div>
+                
+                <div class="whitepaper-section-content fade-in" style="--delay: 5.8s">
+                    <p><strong>Q3 2025:</strong></p>
+                    <ul class="whitepaper-list">
+                        <li class="scale-in completed" style="--delay: 5.9s">Website Launch: fluffyfi.space</li>
+                        <li class="scale-in completed" style="--delay: 6.0s">X and Telegram Channels</li>
+                        <li class="scale-in in-progress" style="--delay: 6.1s">Animated Fluffy content</li>
+                        <li class="scale-in completed" style="--delay: 6.2s">Whitepaper v1</li>
+                        <li class="scale-in in-progress" style="--delay: 6.3s">Bitmedia Ads + Trending Push</li>
+                        <li class="scale-in upcoming" style="--delay: 6.4s">Community Airdrop Campaigns on Discord</li>
+                    </ul>
+                    
+                    <p><strong>Q4 2025:</strong></p>
+                    <ul class="whitepaper-list">
+                        <li class="scale-in upcoming" style="--delay: 6.5s">Token Minting + Wallet Allocations</li>
+                        <li class="scale-in upcoming" style="--delay: 6.6s">Fluffy NFT Launch</li>
+                        <li class="scale-in upcoming" style="--delay: 6.7s">Merch Shop (Test drop)</li>
+                        <li class="scale-in upcoming" style="--delay: 6.8s">Listing on DEX</li>
+                        <li class="scale-in upcoming" style="--delay: 6.9s">DAO Discussion Opening</li>
+                    </ul>
+                </div>
+                
+                <!-- Section 7: Community First -->
+                <div class="whitepaper-section-title slide-in-left" style="--delay: 7.0s">
+                    <span class="typing-animation" data-text="7. Community First"></span>
+                </div>
+                
+                <div class="whitepaper-section-content fade-in" style="--delay: 7.1s">
+                    <p>Every airdrop. Every token. Every meme.</p>
+                    <p>FluffyFi is for the people — and <span class="whitepaper-highlight">built with the people</span>.</p>
+                    
+                    <p><strong>👥 Join us on:</strong></p>
+                    <ul class="whitepaper-list">
+                        <li class="slide-in-right completed" style="--delay: 7.2s">Telegram: t.me/FluffyFi</li>
+                        <li class="slide-in-right upcoming" style="--delay: 7.3s">Discord: discord.gg/fluffyfi (Coming soon)</li>
+                        <li class="slide-in-right completed" style="--delay: 7.4s">X (Twitter): @FluffyFi</li>
+                    </ul>
+                </div>
+                
+                <!-- Section 8: Fair Warning -->
+                <div class="whitepaper-section-title slide-in-right" style="--delay: 7.5s">
+                    <span class="typing-animation" data-text="8. Fair Warning"></span>
+                </div>
+                
+                <div class="whitepaper-section-content fade-in" style="--delay: 7.6s">
+                    <div class="whitepaper-warning">
+                        <p><strong>⚠️ No official token is live at the moment.</strong> Anyone selling you $FLUFFY is a scam until we post official mint instructions on our verified socials.</p>
+                        <p>Stay safe. Stay fluffy. 🧡</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script>
+        // Whitepaper specific animations
+        document.addEventListener('DOMContentLoaded', () => {
+            // Intersection Observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Add animation classes when element is in view
+                        const animElements = entry.target.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in');
+                        animElements.forEach(el => {
+                            el.style.animationPlayState = 'running';
+                        });
+                        
+                        // Only observe once
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all section content
+            const sections = document.querySelectorAll('.whitepaper-section-content');
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Character-by-character typing effect for specific elements
+            const typingElements = document.querySelectorAll('.typing-animation');
+            typingElements.forEach(element => {
+                // Get the text from data-text attribute
+                const text = element.getAttribute('data-text');
+                if (!text) return;
+                
+                // Clear the element
+                element.innerHTML = '';
+                
+                // Create a span for each character with proper animation
+                for (let i = 0; i < text.length; i++) {
+                    const charSpan = document.createElement('span');
+                    charSpan.textContent = text[i];
+                    charSpan.classList.add('char');
+                    charSpan.style.setProperty('--char-index', i);
+                    element.appendChild(charSpan);
+                }
+            });
+            
+            // Add staggered animation to paragraphs within sections
+            document.querySelectorAll('.whitepaper-section-content p').forEach((paragraph, index) => {
+                paragraph.style.setProperty('--delay', `${0.2 * (index + 1)}s`);
+                if (!paragraph.classList.contains('fade-in')) {
+                    paragraph.classList.add('fade-in');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
