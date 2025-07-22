@@ -1,0 +1,389 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FluffyFi - The World of Fluffy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand" onclick="scrollToSection('hero')">
+                <img src="attached_assets/fluffyFi_logo_1753111120819.png" alt="FluffyFi" class="nav-logo">
+                <span class="nav-title">FluffyFi</span>
+            </div>
+            
+            <div class="nav-links desktop-nav">
+                <button onclick="scrollToSection('stats')" class="nav-link">Stats</button>
+                <button onclick="scrollToSection('nfts')" class="nav-link">NFTs</button>
+                <button onclick="scrollToSection('community')" class="nav-link">Community</button>
+                <button onclick="scrollToSection('countdown')" class="nav-link">Countdown</button>
+                <button onclick="scrollToSection('highlights')" class="nav-link">Highlights</button>
+                <button onclick="scrollToSection('joinus')" class="nav-cta">Join Us</button>
+            </div>
+            
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <div id="mobile-menu" class="mobile-menu">
+            <button onclick="scrollToSection('stats')" class="mobile-nav-link">Stats</button>
+            <button onclick="scrollToSection('nfts')" class="mobile-nav-link">NFTs</button>
+            <button onclick="scrollToSection('community')" class="mobile-nav-link">Community</button>
+            <button onclick="scrollToSection('countdown')" class="mobile-nav-link">Countdown</button>
+            <button onclick="scrollToSection('highlights')" class="mobile-nav-link">Highlights</button>
+            <button onclick="scrollToSection('joinus')" class="mobile-cta">Join Us</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="hero-bg">
+            <div class="gradient-bg"></div>
+            <div class="hero-logo-bg">
+                <img src="attached_assets/fluffyFi_logo_1753111120819.png" alt="FluffyFi Background">
+            </div>
+            <div class="cloud-bg cloud-1"></div>
+            <div class="cloud-bg cloud-2"></div>
+            <div class="cloud-bg cloud-3"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-logo">
+                <img src="attached_assets/fluffyFi_logo_1753111120819.png" alt="FluffyFi Mascot">
+            </div>
+            
+            <h1 class="hero-title-1">THE WORLD OF</h1>
+            <h1 class="hero-title-2">FLUFFY</h1>
+            
+            <p class="hero-subtitle">Purring at the foundation of our shared future.</p>
+            
+            <button class="hero-cta" onclick="scrollToSection('joinus')">
+                <i class="fas fa-heart"></i>
+                Join the Community
+            </button>
+        </div>
+    </section>
+
+    <!-- Countdown Section (moved after hero) -->
+    <section id="countdown" class="countdown-section">
+        <div class="container">
+            <div class="countdown-header">
+                <div class="countdown-cloud">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <h2 class="section-title">Launch Countdown</h2>
+            </div>
+            
+            <div class="countdown-display">
+                <div class="countdown-item">
+                    <i class="fas fa-calendar"></i>
+                    <span class="countdown-value" id="days">?9</span>
+                    <span class="countdown-label">D</span>
+                    <span class="countdown-separator">:</span>
+                </div>
+                <div class="countdown-item">
+                    <i class="fas fa-clock"></i>
+                    <span class="countdown-value" id="hours">25</span>
+                    <span class="countdown-label">H</span>
+                    <span class="countdown-separator">:</span>
+                </div>
+                <div class="countdown-item">
+                    <i class="fas fa-clock"></i>
+                    <span class="countdown-value" id="minutes">14</span>
+                    <span class="countdown-label">M</span>
+                    <span class="countdown-separator">:</span>
+                </div>
+                <div class="countdown-item">
+                    <i class="fas fa-clock"></i>
+                    <span class="countdown-value" id="seconds">25</span>
+                    <span class="countdown-label">S</span>
+                </div>
+            </div>
+            
+            <p class="countdown-text">Until FluffyFi Token Launch • ??/30, 2025</p>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="stats-section">
+        <div class="container">
+            <div class="stats-header">
+                <h2 class="section-title">Community Stats</h2>
+                <p class="section-subtitle">Growing stronger together, one fluffy at a time</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card" data-stat="twitter">
+                    <div class="stat-icon">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <div class="stat-number" data-target="386">0</div>
+                    <div class="stat-label">Twitter Followers</div>
+                </div>
+                
+                <div class="stat-card" data-stat="telegram">
+                    <div class="stat-icon">
+                        <i class="fab fa-telegram"></i>
+                    </div>
+                    <div class="stat-number" data-target="1387">0</div>
+                    <div class="stat-label">Telegram Members</div>
+                </div>
+                
+                <div class="stat-card" data-stat="discord">
+                    <div class="stat-icon">
+                        <i class="fab fa-discord"></i>
+                    </div>
+                    <div class="stat-number" data-target="9200">0</div>
+                    <div class="stat-label">Discord Members</div>
+                </div>
+                
+                <div class="stat-card" data-stat="instagram">
+                    <div class="stat-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <div class="stat-number" data-target="12">0</div>
+                    <div class="stat-label">Instagram Followers</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NFT Section -->
+    <section id="nfts" class="nft-section">
+        <div class="container">
+            <div class="nft-header">
+                <h2 class="section-title">Fluffy Friends</h2>
+                <p class="nft-coming-soon">Coming Soon</p>
+                <p class="section-subtitle">Adopt your Fluffy Friend and unlock community perks soon. Each NFT represents a unique cloud cat with special abilities.</p>
+            </div>
+            
+            <div class="nft-grid">
+                <div class="nft-card">
+                    <div class="nft-image">
+                        <img src="attached_assets/fluffy1.jpg" alt="PudgyFluffy #001">
+                    </div>
+                    <div class="nft-content">
+                        <h3 class="nft-title">PudgyFluffy #001</h3>
+                        <p class="nft-rarity">Legendary Rarity</p>
+                        <div class="nft-footer">
+                            <span class="nft-status">Coming Soon</span>
+                            <i class="fas fa-star nft-icon"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="nft-card">
+                    <div class="nft-image">
+                        <img src="attached_assets/fluffy2.jpg" alt="FluffyCat #002">
+                    </div>
+                    <div class="nft-content">
+                        <h3 class="nft-title">FluffyCat #002</h3>
+                        <p class="nft-rarity">Epic Rarity</p>
+                        <div class="nft-footer">
+                            <span class="nft-status">Coming Soon</span>
+                            <i class="fas fa-gem nft-icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community" class="community-section">
+        <div class="container">
+            <div class="community-header">
+                <h2 class="section-title">Global Community</h2>
+                <p class="section-subtitle">Join fellow fluffy enthusiasts in our vibrant community spaces</p>
+            </div>
+            
+            <div class="community-grid">
+                <div class="community-card">
+                    <div class="community-card-header">
+                        <div class="community-icon discord-bg">
+                            <i class="fab fa-discord"></i>
+                        </div>
+                        <div class="community-info">
+                            <h3>Discord Server</h3>
+                            <p>The main hub for FluffyFi community</p>
+                        </div>
+                    </div>
+                    <ul class="community-features">
+                        <li><i class="fas fa-check"></i>Daily Whisker-Twitch Contests</li>
+                        <li><i class="fas fa-check"></i>Weekly Fluffy Naps (AMAs)</li>
+                        <li><i class="fas fa-check"></i>Exclusive NFT Previews</li>
+                        <li><i class="fas fa-check"></i>Community Art Sharing</li>
+                    </ul>
+                    <a href="https://dsc.gg/fluffyfi" target="_blank" class="community-btn discord-btn">
+                        Join Discord Server
+                    </a>
+                </div>
+                
+                <div class="community-card">
+                    <div class="community-card-header">
+                        <div class="community-icon telegram-bg">
+                            <i class="fab fa-telegram"></i>
+                        </div>
+                        <div class="community-info">
+                            <h3>Telegram Chat</h3>
+                            <p>Real-time community discussions</p>
+                        </div>
+                    </div>
+                    <ul class="community-features">
+                        <li><i class="fas fa-check"></i>Live Community Chat</li>
+                        <li><i class="fas fa-check"></i>Instant Project Updates</li>
+                        <li><i class="fas fa-check"></i>Meme Sharing & Fun</li>
+                        <li><i class="fas fa-check"></i>Direct Team Access</li>
+                    </ul>
+                    <a href="https://t.me/fluffyfi_world" target="_blank" class="community-btn telegram-btn">
+                        Join Telegram Chat
+                    </a>
+                </div>
+            </div>
+            
+            <div class="community-showcase">
+                <div class="showcase-image">
+                    <img src="attached_assets/fluffy1.jpg" alt="Community 1">
+                </div>
+                <div class="showcase-image">
+                    <img src="attached_assets/fluffy2.jpg" alt="Community 2">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- Highlights Section -->
+    <section id="highlights" class="highlights-section">
+        <div class="container">
+            <div class="highlights-header">
+                <h2 class="section-title">Project Highlights</h2>
+                <p class="section-subtitle">What makes FluffyFi special in the crypto space</p>
+            </div>
+            
+            <div class="highlights-grid">
+                <div class="highlight-card">
+                    <div class="highlight-icon orange-bg">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community First</h3>
+                    <p>Built by the community, for the community. Every decision is made with our fluffy family in mind.</p>
+                </div>
+                
+                <div class="highlight-card">
+                    <div class="highlight-icon blue-bg">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Eco-Friendly</h3>
+                    <p>Low carbon footprint blockchain technology that doesn't harm our planet's future.</p>
+                </div>
+                
+                <div class="highlight-card">
+                    <div class="highlight-icon peach-bg">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure & Safe</h3>
+                    <p>Audited smart contracts and transparent development process ensure maximum security.</p>
+                </div>
+                
+                <div class="highlight-card">
+                    <div class="highlight-icon purple-bg">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Interactive Fun</h3>
+                    <p>Gamified experiences and interactive elements make crypto fun and accessible.</p>
+                </div>
+                
+                <div class="highlight-card">
+                    <div class="highlight-icon green-bg">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Growth Potential</h3>
+                    <p>Innovative tokenomics designed for sustainable long-term growth and value creation.</p>
+                </div>
+                
+                <div class="highlight-card">
+                    <div class="highlight-icon pink-bg">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Charitable Impact</h3>
+                    <p>A portion of proceeds goes to animal welfare organizations worldwide.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Section -->
+    <section id="joinus" class="join-section">
+        <div class="container">
+            <div class="join-header">
+                <h2 class="section-title">Ready to Join the Fluff?</h2>
+                <p class="section-subtitle">Be part of the most adorable crypto community. Connect with thousands of fluffy friends and prepare for the upcoming launch!</p>
+            </div>
+            
+            <div class="social-grid">
+                <a href="https://x.com/fi_fluffy" target="_blank" class="social-card">
+                    <div class="social-icon twitter-bg">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <h3>Follow Twitter</h3>
+                </a>
+                
+                <a href="https://t.me/fluffyfi_world" target="_blank" class="social-card">
+                    <div class="social-icon telegram-bg">
+                        <i class="fab fa-telegram"></i>
+                    </div>
+                    <h3>Join Telegram</h3>
+                </a>
+                
+                <a href="https://dsc.gg/fluffyfi" target="_blank" class="social-card">
+                    <div class="social-icon discord-bg">
+                        <i class="fab fa-discord"></i>
+                    </div>
+                    <h3>Join Discord</h3>
+                </a>
+                
+                <a href="https://www.instagram.com/fluffyfi_world/" target="_blank" class="social-card">
+                    <div class="social-icon instagram-bg">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <h3>Follow Instagram</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="attached_assets/fluffyFi_logo_1753111120819.png" alt="FluffyFi" class="footer-logo">
+                    <span class="footer-title">FluffyFi</span>
+                </div>
+                
+                <p class="footer-text">Made with Fluff 💛</p>
+                
+                <div class="footer-socials">
+                    <a href="https://x.com/fi_fluffy" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://t.me/fluffyfi_world" target="_blank"><i class="fab fa-telegram"></i></a>
+                    <a href="https://dsc.gg/fluffyfi" target="_blank"><i class="fab fa-discord"></i></a>
+                    <a href="https://www.instagram.com/fluffyfi_world/" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+                
+                <p class="footer-copyright">© 2025 FluffyFi. All rights reserved. Building the future with fluff and love.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
