@@ -76,8 +76,8 @@ async function fetchStats() {
         return {
             telegram: { handle: "fluffyfi_world", followers: 1387, label: "Members" },
             twitter: { handle: "@fi_fluffy", followers: 386, label: "Followers" },
-            instagram: { handle: "@fluffyfi_world", followers: 12, label: "Followers" },
-            discord: { handle: "FluffyFi Server", followers: 9200, label: "Members" }
+            instagram: { handle: "@fluffyfi_world", followers: 169, label: "Followers" },
+            discord: { handle: "FluffyFi Server", followers: 241, label: "Members" }
         };
     }
 }
