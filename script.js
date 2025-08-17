@@ -74,10 +74,10 @@ async function fetchStats() {
     } catch (error) {
         console.error('Error fetching stats:', error);
         return {
-            telegram: { handle: "fluffyfi_world", followers: 1451, label: "Members" },
-            twitter: { handle: "@fi_fluffy", followers: 1001, label: "Followers" },
+            telegram: { handle: "fluffyfi_world", followers: 1620, label: "Members" },
+            twitter: { handle: "@fi_fluffy", followers: 1202, label: "Followers" },
             instagram: { handle: "@fluffyfi_world", followers: 169, label: "Followers" },
-            discord: { handle: "FluffyFi Server", followers: 241, label: "Members" }
+            discord: { handle: "FluffyFi Server", followers: 144, label: "Members" }
         };
     }
 }
@@ -433,4 +433,5 @@ document.addEventListener('click', (e) => {
         }
     }
 });
+
 
